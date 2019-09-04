@@ -1,6 +1,4 @@
-import app from './node_modules/firebase/app';
-import './node_modules/firebase/auth';
-import './node_modules/firebase/firestore';
+import app from 'firebase/app';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,21 +9,13 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   googleKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
-  yelpKey: REACT_APP_YELP_KEY
+  yelpKey: process.env.REACT_APP_YELP_KEY
 };
 
 class Firebase {
   constructor() {
     app.initializeApp(config)
-    this.auth = app.auth()
-    this.db = app.firestore()
   }
-
-
-
-
-
-
-}
+};
 
 export default Firebase;
