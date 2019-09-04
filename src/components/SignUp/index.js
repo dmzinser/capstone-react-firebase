@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
@@ -25,8 +25,13 @@ class SignUpFormBase extends Component {
     const { username, email, passwordOne } = this.state;
     this.props.firebase
     .doCreateUserWithEmailAndPassword(email, passwordOne)
-    .then(authUser => console.log(authUser))
-  }
+    .then(authUser => {
+      this.props.history.push(ROUTES.HOME)
+    })
+    .catch(error => {
+      this.setState({error})
+    });
+  };
 
 
 
@@ -86,9 +91,9 @@ class SignUpFormBase extends Component {
         {error && error.message}
       </form>
     )
-  }
+  };
 };
 
-const SignUpForm = withFirebase(SignUpFormBase);
+const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
 export default SignUp;
