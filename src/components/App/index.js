@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { withFirebase } from '../Firebase';
 
 import Navigation from '../Navigation';
 import Landing from '../Landing';
@@ -9,19 +10,33 @@ import Home from '../Home';
 
 import * as ROUTES from '../../constants/routes';
 
-const App = () => (
-  <Router>
-    <div>
-      <Navigation />
-      <hr />
-      <Route exact path={ROUTES.LANDING} component={Landing} />
-      <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
-      <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
-      <Route exact path={ROUTES.HOME} component={Home} />
-      
+class App extends Component {
+  state = {
+    authUser: null
+  }
 
-    </div>
-  </Router>
-);
+  componentDidMount() {
+    this.props.firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+      ? this.setState({ authUser })
+      : this.setState({ authUser: null })
+    });
+  }
 
-export default App;
+  render() {
+    return(
+      <Router>
+        <div>
+          <Navigation authUser={this.state.authUser} />
+            <hr />
+              <Route exact path={ROUTES.LANDING} component={Landing} />
+              <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
+              <Route exact path={ROUTES.HOME} component={Home} />
+        </div>
+      </Router>
+    );
+  }
+};
+
+export default withFirebase(App);
