@@ -7,17 +7,36 @@ const mapStyles = {
 };
 
 class Home extends Component {
+  state = {
+    currentLocation: { 
+      lat: '',
+      lng: ''
+    }, 
+      loading: true
+  }
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(position => {
+      const {latitude, longitude} = position.coords;
+      this.setState({
+        currentLocation: { lat: latitude, lng: longitude },
+        loading: false
+      });
+    })
+  }
   render() {
+    const { loading, currentLocation } = this.state;
+    const { google } = this.props;
+    if (loading) {
+      return null;
+    }
     return (
-      <Map google={this.props.google}
-      zoom={14}
-      style={mapStyles}
-      initialCenter={{
-        lat: 34.0522,
-        lng: -118.2437
-      }}>
-      </Map>
-    );
+      <Map
+        google={google} 
+        initialCenter={currentLocation}
+        zoom={14}
+        style={mapStyles}
+      />
+    )
   }
 };
 
