@@ -17,8 +17,8 @@ const config = {
 class Firebase {
   constructor() {
     app.initializeApp(config);
-    this.auth=app.auth();
-    this.db=app.firestore();
+    this.auth = app.auth();
+    this.db = app.firestore();
   }
 
   // Authorization API
@@ -32,9 +32,9 @@ class Firebase {
 
   // User API
 
-  user = uid => this.db.ref(`users/${uid}`);
+  user = uid => this.db.collection('users').doc(uid)
 
-  users = () => this.db.ref('users');
+  users = () => this.db.collection('users');
 
 };
 

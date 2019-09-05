@@ -1,20 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import SignOut from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 
 const Navigation = ({ authUser }) => (
-  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+  <div>
+    {authUser 
+    ? <NavigationAuth authUser={authUser}/>
+    : <NavigationNonAuth />}
+  </div>
 );
 
-const NavigationAuth = () => (
+const NavigationAuth = ({ authUser }) => (
   <ul>
      <li>
-        <Link to={ROUTES.HOME}>Home</Link>
+        <NavLink to={ROUTES.HOME}>Home</NavLink>
       </li>
       <li>
-        <SignOut />
+        {authUser.username} <SignOut />
       </li>
   </ul>
 );
@@ -22,10 +26,10 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul>
     <li>
-        <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+        <NavLink to={ROUTES.SIGN_IN}>Sign In</NavLink>
       </li>
       <li>
-        <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+        <NavLink to={ROUTES.SIGN_UP}>Sign Up</NavLink>
       </li>
   </ul>
 );

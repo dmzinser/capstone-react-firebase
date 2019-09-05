@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 
 import Navigation from '../Navigation';
@@ -18,23 +18,30 @@ class App extends Component {
   componentDidMount() {
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser
-      ? this.setState({ authUser })
+      ? this.props.firebase.db.collection('users').doc(authUser.uid).get()
+        .then(snapShot => this.setState({ authUser: snapShot.data() }))
       : this.setState({ authUser: null })
     });
   }
 
   render() {
+    const { authUser } = this.state
     return(
-      <Router>
         <div>
-          <Navigation authUser={this.state.authUser} />
+          <Navigation authUser={authUser} />
             <hr />
-              <Route exact path={ROUTES.LANDING} component={Landing} />
-              <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
-              <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
-              <Route exact path={ROUTES.HOME} component={Home} />
+              <Switch>
+                <Route exact path={ROUTES.LANDING} component={Landing} />
+                <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
+                <Route exact path={ROUTES.SIGN_UP} render={() => <SignUp />} />
+                {
+                  authUser
+                  ? <Route exact path={ROUTES.HOME} render={() => <Home authUser={authUser}/> }/>
+                  : null
+                } 
+              </Switch>
         </div>
-      </Router>
+      
     );
   }
 };

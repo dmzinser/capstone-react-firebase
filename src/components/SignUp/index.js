@@ -5,11 +5,12 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-const SignUp = () => (
+const SignUp = (props) => (
   <div>
     <h1>Sign Up</h1>
-     <SignUpForm />
+     <SignUpForm setUserId={props.setUserId}/> 
   </div>
+  //what is setUserId and where?
 );
 
 class SignUpFormBase extends Component {
@@ -26,6 +27,13 @@ class SignUpFormBase extends Component {
     const { username, email, passwordOne } = this.state;
     this.props.firebase
     .doCreateUserWithEmailAndPassword(email, passwordOne)
+    .then(authUser => {
+      return this.props.firebase.user(authUser.user.uid)
+    .set({
+      username, 
+      email
+    })
+    })
     .then(authUser => {
       this.props.history.push(ROUTES.HOME)
     })
