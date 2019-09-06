@@ -18,6 +18,9 @@ const NavigationAuth = ({ authUser }) => (
         <NavLink to={ROUTES.HOME}>Home</NavLink>
       </li>
       <li>
+        <NavLink to={ROUTES.TACOS}>Tacos</NavLink>
+      </li>
+      <li>
         {authUser.username} <SignOut />
       </li>
   </ul>

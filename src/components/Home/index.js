@@ -1,38 +1,18 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-const mapStyles = {
-  width: '100%',
-  height: '100%'
-};
 
 class Home extends Component {
-  state = {
-    currentLocation: { 
-      lat: '',
-      lng: ''
-    }, 
-      loading: true
-  }
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(position => {
-      const {latitude, longitude} = position.coords;
-      this.setState({
-        currentLocation: { lat: latitude, lng: longitude },
-        loading: false
-      });
-    })
-  }
   render() {
-    const { loading, currentLocation } = this.state;
-    const { google } = this.props;
-    if (loading) {
-      return null;
-    }
+    const mapStyles = {
+      width: '100%',
+      height: '100%'
+    };
+    console.log(this.props)
     return (
       <Map
-        google={google} 
-        initialCenter={currentLocation}
+        google={this.props.google} 
+        initialCenter={this.props.currentLocation}
         zoom={14}
         style={mapStyles}
       />
