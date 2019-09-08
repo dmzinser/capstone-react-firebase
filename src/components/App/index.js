@@ -18,7 +18,8 @@ class App extends Component {
       lat: '',
       lng: ''
     }, 
-      loading: true
+    loading: true,
+    tacos: []
   }
 
   async componentDidMount() {
@@ -28,10 +29,7 @@ class App extends Component {
         .then(snapShot => this.setState({ authUser: snapShot.data() }))
       : this.setState({ authUser: null })
     });
-    const userLocation = await this.getLocation();
-    this.setState({
-      currentLocation: userLocation
-    })
+    await this.getLocation();
   }
 
   getLocation = async () => {
@@ -40,12 +38,28 @@ class App extends Component {
       this.setState({
         currentLocation: { lat: latitude, lng: longitude },
         loading: false
-      });
+      }, () => this.getTacos());
+    })
+  }
+
+  getTacos = async () => {
+    const tacoList= await fetch('http://localhost:5000/ga-capstone-c7083/us-central1/app/api/v1/get-tacos', {
+      method: "POST",
+      body: JSON.stringify(this.state.currentLocation)
+    })
+    const parsedTacoList = await tacoList.json()
+    this.setState({
+      tacos: parsedTacoList.data
     })
   }
 
   render() {
-    const { authUser, currentLocation, loading } = this.state
+    const {
+      authUser,
+      currentLocation,
+      loading,
+      tacos
+    } = this.state
     return(
       <div>
         <Navigation authUser={authUser} />
@@ -59,13 +73,15 @@ class App extends Component {
                 ? <Route exact path={ROUTES.HOME} render={() => <Home 
                   authUser={authUser}
                   currentLocation={currentLocation}
-                  loading={loading}/> }/>
+                  loading={loading}
+                  tacos={tacos} /> }/>
                 : null
               } 
               {
                 authUser
                 ? <Route exact path={ROUTES.TACOS} render={() => <Tacos 
-                  authUser={authUser}/> }/>
+                  authUser={authUser}
+                  tacos={tacos} /> }/>
                 : null
               } 
             </Switch>

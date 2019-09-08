@@ -4,20 +4,21 @@ const axios = require('axios');
 const cors = require('cors')
 
 const app = express();
+app.use(express.json())
 app.use(cors())
 
-app.get('/api/v1/get-tacos', async (req, res) => {
+app.post('/api/v1/get-tacos', async (req, res) => {
   const yelpAPI = functions.config().yelp.key
-  console.log(yelpAPI)
+  const body = JSON.parse(req.body)
   try {
-    const data = await axios('https://api.yelp.com/v3/businesses/search?term=tacos&location=los%20angeles', {
+    const data = await axios(`https://api.yelp.com/v3/businesses/search?term=tacos&latitude=${body.lat}&longitude=${body.lng}&sort_by=rating`, {
       headers: {
         "Authorization": `Bearer ${yelpAPI}`
       }
     })
     res.json({data: data.data})
   } catch(err) {
-    console.log(err)
+    return(err)
   }
 })
 
