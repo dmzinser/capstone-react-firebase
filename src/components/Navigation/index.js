@@ -18,7 +18,7 @@ const NavigationAuth = ({ authUser }) => (
         <NavLink to={ROUTES.HOME}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={ROUTES.TACOS}>Tacos</NavLink>
+        <NavLink to={ROUTES.ACCOUNT}>Account</NavLink>
       </li>
       <li className='signOut'>
         {authUser.username} <SignOut />

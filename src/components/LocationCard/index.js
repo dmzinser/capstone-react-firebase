@@ -4,7 +4,7 @@ import { Card, CardImg, CardText, CardBody,
 
 const LocationCard = (props) => {
   return(
-    <div className='location-card'>
+    <div className='basic-card'>
     <Card>
       <CardImg top width='100%' src={props.info.image_url} alt='Yelp Restaurant Image' />
       <CardBody>

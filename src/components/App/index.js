@@ -7,7 +7,7 @@ import Landing from '../Landing';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
 import Home from '../Home';
-import Tacos from '../Tacos';
+import Account from '../Account';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -81,7 +81,7 @@ class App extends Component {
         } 
         {
           authUser
-          ? <Route exact path={ROUTES.TACOS} render={() => <Tacos 
+          ? <Route exact path={ROUTES.ACCOUNT} render={() => <Account 
             authUser={authUser}
             tacos={tacos} /> }/>
           : null
