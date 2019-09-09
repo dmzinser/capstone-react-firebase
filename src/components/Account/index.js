@@ -12,19 +12,19 @@ class Account extends Component {
   }
   render(){
     const cardInfo = this.props.authUser
-   return (
-     <div className='basic-card'>
-      <Card>
-        <CardImg top width='100%' src='USER IMAGE' alt='Yelp Restaurant Image' />
-        <CardBody>
-          <CardTitle>{cardInfo.username}</CardTitle>
-          <CardSubtitle>{cardInfo.email}</CardSubtitle>
-          <CardText>Favorites:</CardText>
-          <Button onClick={this.onClick}>Edit Account Info</Button>
-        </CardBody>
-      </Card>
-    </div>
-  )
+    return (
+      <div className='basic-card'>
+        <Card>
+          <CardImg top width='100%' src='USER IMAGE' alt='Yelp Restaurant Image' />
+          <CardBody>
+            <CardTitle>{cardInfo.username}</CardTitle>
+            <CardSubtitle>{cardInfo.email}</CardSubtitle>
+            <CardText>Favorites:</CardText>
+            <Button onClick={this.onClick}>Edit Account Info</Button>
+          </CardBody>
+        </Card>
+      </div>
+    )
   }
 }
 
