@@ -8,8 +8,9 @@ import * as ROUTES from '../../constants/routes';
 class Account extends Component {
   onClick = (event) => {
     event.preventDefault();
-    this.props.history.push(ROUTES.USERSHOW)
+    this.props.history.push(`${ROUTES.ACCOUNT}/${this.props.authUser.id}`)
   }
+
   render(){
     const cardInfo = this.props.authUser
     return (

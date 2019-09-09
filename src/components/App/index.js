@@ -8,6 +8,7 @@ import SignIn from '../SignIn';
 import SignUp from '../SignUp';
 import Home from '../Home';
 import Account from '../Account';
+import UserShow from '../UserShow';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -26,7 +27,7 @@ class App extends Component {
     this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser
       ? this.props.firebase.db.collection('users').doc(authUser.uid).get()
-        .then(snapShot => this.setState({ authUser: snapShot.data() }))
+        .then(snapShot => this.setState({ authUser: Object.assign(snapShot.data(), {id: snapShot.id}) }))
       : this.setState({ authUser: null })
     });
     await this.getLocation();
@@ -53,6 +54,14 @@ class App extends Component {
     })
   }
 
+  updateAuthUser = id => {
+    this.props.firebase.user(id)
+      .get()
+      .then(snapShot => {
+        this.setState({ authUser: Object.assign(snapShot.data(), {id: snapShot.id}) })
+      })
+  }
+
   render() {
     const {
       authUser,
@@ -70,13 +79,16 @@ class App extends Component {
         <Route exact path={ROUTES.LANDING} component={Landing} />
         <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
         <Route exact path={ROUTES.SIGN_UP} render={() => <SignUp />} />
+        <Route exact path={`${ROUTES.ACCOUNT}/:id`} render={() => <UserShow authUser={authUser}/>} />
         {
           authUser
           ? <Route exact path={ROUTES.HOME} render={() => <Home 
             authUser={authUser}
             currentLocation={currentLocation}
             loading={loading}
-            tacos={tacos} /> }/>
+            tacos={tacos} 
+            updateAuthUser={this.updateAuthUser}
+            /> }/>
           : null
         } 
         {

@@ -3,7 +3,7 @@ body {
 }
 
 .basic-card {
-  width: 250px;
+  max-width: 250px;
   float: right;
 }
 

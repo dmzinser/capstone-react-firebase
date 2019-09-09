@@ -35,8 +35,7 @@ class Home extends Component {
     return (
       <Container className='homePage'>
         <Row>
-          <Col>
-            <div className='mapPage'>
+          <Col className='Map-page'>
               <Map google={this.props.google}
               initialCenter={this.props.currentLocation}
               zoom={14}
@@ -75,21 +74,20 @@ class Home extends Component {
                   }
                 </InfoWindow>
               </Map>
-            </div>
           </Col>
-          <Col>
-            <div className="Map-cards">
+          <Col class='basic-card'>
               {this.props.tacos.businesses &&
                 this.props.tacos.businesses.map((t, i) => {
                   return (
                       <LocationCard
                         key={i}
                         info={t}
+                        authUser={this.props.authUser}
+                        updateAuthUser={this.props.updateAuthUser}
                       />
                       )
                     })
                   }
-            </div>
           </Col>
         </Row>
       </Container>

@@ -1,8 +1,31 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { withFirebase } from '../Firebase'
 
 const LocationCard = (props) => {
+
+  const addToFavs = () => {
+    const userId = props.firebase.auth.currentUser.uid
+    props.firebase.user(userId).update({
+      favs: props.firebase.firestore.FieldValue.arrayUnion(props.info.id)
+    }).then(() => {
+      props.updateAuthUser(userId)
+    })
+  };
+
+  const deleteFromFavs = () => {
+    const userId = props.firebase.auth.currentUser.uid
+    props.firebase.user(userId).update({
+      favs: props.firebase.firestore.FieldValue.arrayRemove(props.info.id)
+    }).then(() => {
+      props.updateAuthUser(userId)
+    })
+  };
+
+  const isFav = props.authUser.favs && props.authUser.favs.some(f => f.includes(props.info.id))
+  
+
   return(
     <div className='basic-card'>
     <Card>
@@ -11,11 +34,15 @@ const LocationCard = (props) => {
         <CardTitle>{props.info.name}</CardTitle>
         <CardSubtitle>Card subtitle</CardSubtitle>
         <CardText>{props.info.location.display_address}</CardText>
-        <Button>Favorite</Button>
+        {
+          isFav
+            ? <Button onClick={deleteFromFavs}>Remove</Button>
+            : <Button onClick={addToFavs}>Favorite</Button>
+        }
       </CardBody>
     </Card>
   </div>
   );
 }
 
-export default LocationCard;
+export default withFirebase(LocationCard);

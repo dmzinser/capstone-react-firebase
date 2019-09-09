@@ -5,8 +5,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 class SignOut extends Component {
-  logoutHandler = (event) => {
-    event.preventDefault();
+  logoutHandler = () => {
     this.props.firebase.doSignOut().then(() => {
       this.props.history.push(ROUTES.LANDING)
     })

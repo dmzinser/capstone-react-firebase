@@ -30,12 +30,12 @@ class UserShow extends Component {
     })
   };
 
-  render({ authUser }) {
-    const userInfo = this.props.authUser
+  render() {
+    const userInfo = this.props.authUser || {}
 
     const isInvalid = 
-    username === '' ||
-    email === ''
+    userInfo.username === '' ||
+    userInfo.email === ''
 
     return(
       <div className='basic-card'>
