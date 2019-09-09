@@ -61,31 +61,33 @@ class App extends Component {
       tacos
     } = this.state
     return(
-      <div>
+      <> 
+      <div className='nav'>
         <Navigation authUser={authUser} />
-          <hr />
-            <Switch>
-              <Route exact path={ROUTES.LANDING} component={Landing} />
-              <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
-              <Route exact path={ROUTES.SIGN_UP} render={() => <SignUp />} />
-              {
-                authUser
-                ? <Route exact path={ROUTES.HOME} render={() => <Home 
-                  authUser={authUser}
-                  currentLocation={currentLocation}
-                  loading={loading}
-                  tacos={tacos} /> }/>
-                : null
-              } 
-              {
-                authUser
-                ? <Route exact path={ROUTES.TACOS} render={() => <Tacos 
-                  authUser={authUser}
-                  tacos={tacos} /> }/>
-                : null
-              } 
-            </Switch>
       </div>
+
+      <Switch>
+        <Route exact path={ROUTES.LANDING} component={Landing} />
+        <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
+        <Route exact path={ROUTES.SIGN_UP} render={() => <SignUp />} />
+        {
+          authUser
+          ? <Route exact path={ROUTES.HOME} render={() => <Home 
+            authUser={authUser}
+            currentLocation={currentLocation}
+            loading={loading}
+            tacos={tacos} /> }/>
+          : null
+        } 
+        {
+          authUser
+          ? <Route exact path={ROUTES.TACOS} render={() => <Tacos 
+            authUser={authUser}
+            tacos={tacos} /> }/>
+          : null
+        } 
+      </Switch>
+      </>
     );
   }
 };

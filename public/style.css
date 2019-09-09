@@ -1,0 +1,60 @@
+body {
+  background-color: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+}
+
+.location-card {
+  width: 250px;
+}
+
+/* .nav ul {
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+} */
+
+/* body {
+  background-image: url('https://i.imgur.com/nUb0d2M.jpg');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  margin-top: -50px;
+} */ 
+
+/* .landing {
+  background-image: url('https://i.imgur.com/nUb0d2M.jpg');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  margin-top: -50px;
+}
+
+.nav {
+  height: 50px;
+}
+
+.nav ul {
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+}
+
+.mapPage {
+ padding: 100px 20px;
+} 
+
+ .nav ul li {
+  display: table-cell;
+  margin: 0 auto;
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+} 
+*/

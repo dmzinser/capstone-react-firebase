@@ -13,14 +13,14 @@ const Navigation = ({ authUser }) => (
 );
 
 const NavigationAuth = ({ authUser }) => (
-  <ul>
+  <ul className='navList'>
      <li>
         <NavLink to={ROUTES.HOME}>Home</NavLink>
       </li>
       <li>
         <NavLink to={ROUTES.TACOS}>Tacos</NavLink>
       </li>
-      <li>
+      <li className='signOut'>
         {authUser.username} <SignOut />
       </li>
   </ul>
