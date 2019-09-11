@@ -3,6 +3,7 @@ import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import { Container, Row, Col } from 'reactstrap';
 import LocationCard from '../LocationCard';
 
+import '../../App.css';
 
 class Home extends Component {
   state = {
@@ -29,8 +30,8 @@ class Home extends Component {
 
   render() {
     const mapStyles = {
-      width: '500px',
-      height: '500px'
+      width: '90%',
+      height: '80vh'
     };
     return (
       <Container className='homePage'>
@@ -63,19 +64,19 @@ class Home extends Component {
                   >
                   {
                     this.state.selectedMarker &&
-                    <div className="infoWindow">
+                    <div className='infoWindow'>
                       <h2>{this.state.selectedMarker.info.name}</h2>
                       <h3>{this.state.selectedMarker.info.location.address1}</h3>
                       <h3>{this.state.selectedMarker.info.location.city}, {this.state.selectedMarker.info.location.state} {this.state.selectedMarker.info.location.zip_code}</h3>
                       <p>Rating: {this.state.selectedMarker.info.rating}</p>
                       <a href={this.state.selectedMarker.info.phone}>{this.state.selectedMarker.info.display_phone}</a><br/>
-                      <img src={this.state.selectedMarker.info.image_url} style={{maxWidth: "100px"}}/>
+                      <img src={this.state.selectedMarker.info.image_url} style={{maxWidth: '100px'}}/>
                     </div>
                   }
                 </InfoWindow>
               </Map>
           </Col>
-          <Col class='basic-card'>
+          <Col className='location-wrapper'>
               {this.props.tacos.businesses &&
                 this.props.tacos.businesses.map((t, i) => {
                   return (

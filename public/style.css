@@ -1,11 +1,21 @@
-body {
+/* body {
   background-color: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
 }
 
-.basic-card {
+.location-card {
   max-width: 250px;
   float: right;
 }
+
+.account-card {
+  max-width: 250px;
+}
+
+.location-wrapper {
+  height: 80vh;
+  overflow: scroll;
+} */
+
 
 /* .nav ul {
   margin: 0;

@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+
+import { 
+  Container,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input 
+} from 'reactstrap';
+
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import PasswordChange from '../PasswordChange';
+import { PasswordForgetLink } from '../PasswordForget';
 
 class UserShow extends Component {
   state = {
@@ -32,24 +41,29 @@ class UserShow extends Component {
 
   render() {
     const userInfo = this.props.authUser || {}
-
-    const isInvalid = 
-    userInfo.username === '' ||
-    userInfo.email === ''
-
+    const isInvalid = this.state.username === ''
     return(
-      <div className='basic-card'>
-        <Card>
-          <CardImg top width='100%' src='USER IMAGE' alt='Yelp Restaurant Image' />
-          <CardBody>
-            <CardTitle>{userInfo.username}</CardTitle>
-            <CardSubtitle>CARD SUBTITLE</CardSubtitle>
-            <CardText>Favorites:</CardText>
-            <Button type='submit' disabled={isInvalid} onClick={this.onClickUpdate}> Update Account Info</Button>
-            <Button onClick={this.onClickDelete}>Delete Account</Button>
-          </CardBody>
-        </Card>
-      </div>
+        <Container className='form'>
+          <Form>
+            <FormGroup>
+              <Label>Username: {userInfo.username}</Label>
+              <Input
+                name='username'
+                value={this.username}
+                onChange={this.onChange}
+                type='text'
+                placeholder='Username'
+                />
+            </FormGroup>
+              <Button disabled={isInvalid} type='submit' onClick={this.onClickUpdate}> Update Username</Button>
+            <FormGroup>
+              <PasswordChange />
+              <PasswordForgetLink />
+            </FormGroup>
+              <Label>Favorites:</Label><br/>
+              <Button onClick={this.onClickDelete}>Delete Account</Button>
+          </Form>
+        </Container>
     )
   }
 }

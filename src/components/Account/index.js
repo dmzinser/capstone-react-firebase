@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+
+import { Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button } from 'reactstrap';
+
 import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+
+import '../../App.css';
 
 class Account extends Component {
   onClick = (event) => {
@@ -12,15 +21,16 @@ class Account extends Component {
   }
 
   render(){
+    const favs = this.props.authUser.favs
     const cardInfo = this.props.authUser
     return (
-      <div className='basic-card'>
+      <div className='account-card'>
         <Card>
-          <CardImg top width='100%' src='USER IMAGE' alt='Yelp Restaurant Image' />
+          <CardImg top width='100%' src='USER IMAGE' alt='User Image' />
           <CardBody>
-            <CardTitle>{cardInfo.username}</CardTitle>
-            <CardSubtitle>{cardInfo.email}</CardSubtitle>
-            <CardText>Favorites:</CardText>
+            <CardTitle>Username: {cardInfo.username}</CardTitle>
+            <CardSubtitle>Email:  {cardInfo.email}</CardSubtitle>
+            <CardText>Favorites:{favs}</CardText>
             <Button onClick={this.onClick}>Edit Account Info</Button>
           </CardBody>
         </Card>

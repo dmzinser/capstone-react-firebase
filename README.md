@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# iEatTacos
 
-## Available Scripts
+### Intro
+_______________________________________________________________________________________________________________________
 
-In the project directory, you can run:
+iEatTacos is a restaurant-locator web app that allows users to quickly find and locate Yelp's Highest Rated taco spots near their current location.
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Intended User Flow
+_______________________________________________________________________________________________________________________
+At landing, the user will immediately be asked to share their location with the browser and is encouraged to "Get Started" by either signing-in or signing-up.  Thereafter, the user is rerouted to the "Home" page which populates a Google map of their current location with markers representing the highest ranked taco shops according to Yelp.  A list of those shops also appends adjacent to the map allowing the user to "favorite" restaurants for future reference.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Initial Wireframe
+_______________________________________________________________________________________________________________________
+### Landing Page
+![Landing Page](wireframes/landing-page.png)
+### Sign-Up
+![Sign-Up](wireframes/signup.png)
+### Sign-in
+![Login](wireframes/signin.png)
 
-### `npm test`
+### Technologies Used
+_______________________________________________________________________________________________________________________
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* HTML
+* JavaScript
+* CSS
+* React
+* Google-Maps-React
+* Google Maps API
+* Yelp Fusion API
+* Reactstrap
+* Firebase
+* Git
+* GitHub
 
-### `npm run build`
+### Visit the site!
+_______________________________________________________________________________________________________________________
+[Screenshot] <img src="https://i.imgur.com/roXU4zc.jpg">
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Visit the project page <a href="https://ga-capstone-c7083.firebaseapp.com/">HERE</a>
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Next Steps
+_______________________________________________________________________________________________________________________
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* Update Username
+* Delete User Account
+* List FAVS by Restaurant Name
+* On-Hover FAV triggers Map InfoWindow
+* Marker for User's current location

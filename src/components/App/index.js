@@ -11,6 +11,7 @@ import Account from '../Account';
 import UserShow from '../UserShow';
 
 import * as ROUTES from '../../constants/routes';
+import { PasswordForgetForm } from '../PasswordForget';
 
 class App extends Component {
   state = {
@@ -45,7 +46,7 @@ class App extends Component {
 
   getTacos = async () => {
     const tacoList= await fetch('http://localhost:5000/ga-capstone-c7083/us-central1/app/api/v1/get-tacos', {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(this.state.currentLocation)
     })
     const parsedTacoList = await tacoList.json()
@@ -54,7 +55,7 @@ class App extends Component {
     })
   }
 
-  updateAuthUser = id => {
+  updateAuthUser = (id) => {
     this.props.firebase.user(id)
       .get()
       .then(snapShot => {
@@ -71,15 +72,14 @@ class App extends Component {
     } = this.state
     return(
       <> 
-      <div className='nav'>
         <Navigation authUser={authUser} />
-      </div>
 
       <Switch>
         <Route exact path={ROUTES.LANDING} component={Landing} />
         <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
         <Route exact path={ROUTES.SIGN_UP} render={() => <SignUp />} />
         <Route exact path={`${ROUTES.ACCOUNT}/:id`} render={() => <UserShow authUser={authUser}/>} />
+        <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetForm} />
         {
           authUser
           ? <Route exact path={ROUTES.HOME} render={() => <Home 
