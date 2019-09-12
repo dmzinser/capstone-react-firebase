@@ -22,16 +22,16 @@ ________________________________________________________________________________
 ### Technologies Used
 _______________________________________________________________________________________________________________________
 
-* HTML
-* JavaScript
+* Javascript
 * CSS
+* HTML
 * React
+* Express
 * Google-Maps-React
-* Google Maps API
-* Yelp Fusion API
 * Reactstrap
 * Firebase
-* Git
+* Google Maps API
+* Yelp Fusion API
 * GitHub
 
 ### Visit the site!
