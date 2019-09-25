@@ -16,9 +16,10 @@ app.post('/api/v1/get-tacos', async (req, res) => {
         "Authorization": `Bearer ${yelpAPI}`
       }
     })
+    console.log(data)
     res.json({data: data.data})
   } catch(err) {
-    return(err)
+    console.log(err)
   }
 })
 

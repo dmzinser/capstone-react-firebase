@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   getTacos = async () => {
-    const tacoList= await fetch('http://localhost:5000/ga-capstone-c7083/us-central1/app/api/v1/get-tacos', {
+    const tacoList= await fetch('/api/v1/get-tacos', {
       method: 'POST',
       body: JSON.stringify(this.state.currentLocation)
     })

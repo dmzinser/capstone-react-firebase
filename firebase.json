@@ -18,6 +18,10 @@
     ],
     "rewrites": [
       {
+        "source": "/api/v1/get-tacos",
+        "function": "app"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
